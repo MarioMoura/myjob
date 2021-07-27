@@ -1,11 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import RootNav from './navigator/root-nav';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
 
-export default function App() {
+export default function Verde({ navigation }) {
   return (
-    <RootNav/>
+    <View style={styles.container}>
+      <Text>Verde Page</Text>
+    </View>
   );
 }
 
