@@ -1,41 +1,84 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign} from "@expo/vector-icons";
+import {Entypo} from "@expo/vector-icons";
+import React, {useState} from "react";
+import {
+	Image,
+	Modal,
+	StyleSheet,
+	Text,
+	View,
+	TouchableWithoutFeedback
+} from "react-native";
+import "../globals/colors";
+import {LinearGradient} from 'expo-linear-gradient';
+
 export default function Header() {
+	const [modalVisible, setModalVisible] = useState(false);
 	return (
-		<View
-			style={styles.container}
-		>
+		<View style={styles.container}>
 			<Image
-				source={{uri: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"}}
+				source={{
+					uri: "https://cdn.dribbble.com/users/458522/screenshots/4568564/kratos_1.jpg?compress=1&resize=300x300",
+				}}
 				style={styles.profileIcon}
 			/>
 			<View style={styles.textView}>
-
 				<Text style={{opacity: 0}}></Text>
 
-				<Text >eae eae eae</Text>
+				<Text style={styles.profileNameText}>Kratos </Text>
 
-				<Text >star</Text>
-
+				<View style={styles.bottomText}>
+					<Entypo name="star" size={19} color={global.green} />
+					<Text style={styles.scoreText}>5,0</Text>
+				</View>
 			</View>
 			<AntDesign
 				name="questioncircleo"
 				size={35}
-				color="black"
+				color="white"
 				style={styles.aboutIcon}
-				onPress={() => console.log("eae")}
+				onPress={() => setModalVisible(!modalVisible)}
 			/>
+			<Modal
+				visible={modalVisible}
+				animationType="fade"
+				transparent={true}
+			>
+				<TouchableWithoutFeedback
+					onPress={() => setModalVisible(!modalVisible)}
+				>
+					<View style={styles.baseModal}>
+						<View style={styles.modalView}>
+							<AntDesign
+								name="questioncircleo"
+								size={155}
+								color="white"
+								onPress={() => setModalVisible(!modalVisible)}
+							/>
+							<View style={styles.modalTextBox} >
+								<Text style={styles.modalText}>
+									texto massa
+									texto massa
+									texto massa
+								</Text>
+							</View>
+						</View>
+						<LinearGradient
+							colors={[global.gray, 'transparent']}
+							style={styles.background}
+						/>
+					</View>
+				</TouchableWithoutFeedback >
+			</Modal>
 		</View>
 	);
-
 }
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'coral',
+		backgroundColor: global.gray,
 		height: 100,
-		flexDirection: 'row',
-		alignItems: 'center',
+		flexDirection: "row",
+		alignItems: "center",
 		paddingLeft: 10,
 		paddingRight: 10,
 	},
@@ -44,12 +87,50 @@ const styles = StyleSheet.create({
 		width: 50,
 		borderRadius: 40,
 	},
+	profileNameText: {
+		color: "white",
+		fontSize: 18,
+	},
 	textView: {
+		marginLeft: 5,
 		height: 50,
-		backgroundColor: 'skyblue',
-		justifyContent: 'space-between',
+		justifyContent: "space-between",
+	},
+	bottomText: {
+		flexDirection: "row",
+		marginLeft: 2,
+	},
+	scoreText: {
+		color: "white",
+		marginTop: 2,
 	},
 	aboutIcon: {
-		marginLeft: 'auto',
+		marginLeft: "auto",
+	},
+	baseModal: {
+		flex: 1,
+	},
+	modalView: {
+		height: '60%',
+		backgroundColor: global.gray,
+		padding: 35,
+		alignItems: "center",
+	},
+	modalTextBox: {
+		width: '90%',
+		marginTop: 30,
+		padding: 15,
+		backgroundColor: 'black',
+		justifyContent: 'center',
+		borderRadius: 10,
+	},
+	modalText: {
+		marginVertical: 15,
+		textAlign: "center",
+		color: 'white',
+		fontSize: 17,
+	},
+	background: {
+		height: 20,
 	},
 });

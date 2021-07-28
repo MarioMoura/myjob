@@ -26,6 +26,8 @@ export default function TabNav() {
 					height: 70,
 					justifyContent: 'flex-start',
 					padding: 0,
+					borderTopWidth: 0,
+					borderTopColor: global.gray,
 				},
 			}}
 		>
