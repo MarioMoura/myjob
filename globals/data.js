@@ -5,7 +5,7 @@ const DATA = [
 		title: "Grama Alta",
 		type: 'green',
 		distance: 17,
-		location: "Jurunas - Belem",
+		location: "Tyr's Temple - Midgard",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
 		photourl: "https://cdn.dribbble.com/users/458522/screenshots/4568564/kratos_1.jpg?compress=1&resize=300x300",
 		requirements: [

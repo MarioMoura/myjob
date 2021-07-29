@@ -20,7 +20,7 @@ export default function Card({item, navigation}) {
 				<Text style={styles.textDescription} numberOfLines={2}>{item.description}</Text>
 			</View>
 			<View style={styles.right}>
-				<TypeIcon type={item.type} dim={20} />
+				<TypeIcon type={item.type} size={20} />
 				<Text style={styles.textDistance}>{item.distance}Km</Text>
 				<TouchableOpacity style={styles.acceptButton} onPress={() => console.log('e3ae')}>
 					<Text style={styles.textButton}>Aceitar</Text>

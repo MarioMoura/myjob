@@ -1,14 +1,20 @@
-import React, {useContext} from "react";
-import {StyleSheet, Text, View, Button, TouchableOpacity, FlatList} from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	FlatList
+} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
 
-//import AuthContext from "../globals/authContext";
-//
 import Card from '../components/card';
-
-import Header from "../components/header";
 import DATA from "../globals/data";
+import Header from "../components/header";
 
 export default function Lista({navigation}) {
+
+	const Stack = createStackNavigator();
 
 	//const { isLogged, setIsLogged } = useContext(AuthContext);
 
@@ -41,7 +47,7 @@ export default function Lista({navigation}) {
 
 	const flatItem = ({item}) => {
 		return (
-			<TouchableOpacity onPress={() => navigation.navigate('myjobs', {item: item})}>
+			<TouchableOpacity onPress={() => navigation.navigate('ojob', {item: item})}>
 				<Card item={item} />
 			</TouchableOpacity>
 		)

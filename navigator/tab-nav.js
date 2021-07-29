@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Lista from '../screens/lista';
 import Jobs from '../screens/jobs';
 import Perfil from '../screens/perfil';
+import Ojob from '../screens/ojob';
 
 
 import {FontAwesome5, FontAwesome} from '@expo/vector-icons';
@@ -63,6 +64,14 @@ export default function TabNav() {
 							<FontAwesome name="user-circle" size={size} color={color} />
 						</View>
 					),
+				}}
+			/>
+			<Tab.Screen
+				name="ojob"
+				component={Ojob}
+				options={{
+					// no button
+					tabBarButton: () => (null),
 				}}
 			/>
 		</Tab.Navigator>

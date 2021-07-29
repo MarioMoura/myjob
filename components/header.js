@@ -1,27 +1,33 @@
-import {AntDesign} from "@expo/vector-icons";
-import {Entypo} from "@expo/vector-icons";
-import React, {useState} from "react";
+import "../globals/colors";
+
 import {
 	Image,
 	Modal,
 	StyleSheet,
 	Text,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
 	View,
-	TouchableWithoutFeedback
-} from "react-native";
-import "../globals/colors";
+} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+
+import {AntDesign, Entypo} from '@expo/vector-icons';
 
 export default function Header() {
+	const navigation = useNavigation();
 	const [modalVisible, setModalVisible] = useState(false);
 	return (
 		<View style={styles.container}>
-			<Image
-				source={{
-					uri: "https://cdn.dribbble.com/users/458522/screenshots/4568564/kratos_1.jpg?compress=1&resize=300x300",
-				}}
-				style={styles.profileIcon}
-			/>
+			<TouchableOpacity onPress={() => navigation.navigate('perfil')}>
+				<Image
+					source={{
+						uri: "https://cdn.dribbble.com/users/458522/screenshots/4568564/kratos_1.jpg?compress=1&resize=300x300",
+					}}
+					style={styles.profileIcon}
+				/>
+			</TouchableOpacity>
 			<View style={styles.textView}>
 				<Text style={{opacity: 0}}></Text>
 
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
 		width: '90%',
 		marginTop: 30,
 		padding: 15,
-		backgroundColor: 'black',
+		backgroundColor: global.darkgray,
 		justifyContent: 'center',
 		borderRadius: 10,
 	},
