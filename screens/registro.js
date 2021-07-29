@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: global.green,
 		marginTop: 10,
+		color: 'white',
 	},
 	wrapper: {
 		marginTop: 15,

@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	input: {
+		color: 'white',
 		height: 40,
 		textAlign: 'center',
 		borderBottomWidth: 1,
