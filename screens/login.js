@@ -1,20 +1,26 @@
-import React, { useContext, useRef } from 'react';
-import { Image, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import React, {useContext, useRef} from 'react';
+import {Image, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
 
 import AuthContext from '../globals/authContext';
-import  '../globals/colors';
+import '../globals/colors';
 import MainIcon from '../globals/mainIcon';
 
+import Toast from 'react-native-toast-message'
 
-export default function Login({ navigation }) {
-	const { isLogged, setIsLogged } = useContext( AuthContext );
+
+export default function Login({navigation}) {
+	const {isLogged, setIsLogged} = useContext(AuthContext);
 
 	const userInputRef = useRef()
 	const passwdInputRef = useRef()
-	
-	const Log_in = () =>{
-		setIsLogged( true );
-		console.log(global.green);
+
+	const Log_in = () => {
+		//setIsLogged(true);
+		Toast.show({
+			type: 'error',
+			text1: 'Hello',
+			text2: 'This is some something 👋',
+		});
 	}
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -22,42 +28,43 @@ export default function Login({ navigation }) {
 				style={styles.base}
 			>
 				{/* behavior="height" */}
-				<View style={ styles.main }>
-					<Text style={ styles.text }>Login</Text>
-					<Image style={ styles.icon } source={MainIcon}/>
+				<View style={styles.main}>
+					<Text style={styles.text}>Login</Text>
+					<Image style={styles.icon} source={MainIcon} />
 					<TextInput
 						placeholder="Usuario"
-						placeholderTextColor={ global.lightgray}
-						style={ styles.input }
+						placeholderTextColor={global.lightgray}
+						style={styles.input}
 						ref={userInputRef}
 						returnKeyType="next"
 						onSubmitEditing={() => passwdInputRef.current.focus()}
+						clearButtonMode='while-editing'
 					/>
 					<TextInput
 						placeholder="Senha"
-						placeholderTextColor={ global.lightgray}
-						style={ styles.input }
+						placeholderTextColor={global.lightgray}
+						style={styles.input}
 						ref={passwdInputRef}
 						returnKeyType="go"
-						onSubmitEditing={() => Log_in() }
+						onSubmitEditing={() => Log_in()}
 					/>
 					<View >
 						<TouchableOpacity
 							onPress={Log_in}
-							style={ styles.mainButton }>
-							<Text style={{ textAlign: 'center', color: 'white', fontSize: 18 }}>Entrar</Text>
+							style={styles.mainButton}>
+							<Text style={{textAlign: 'center', color: 'white', fontSize: 18}}>Entrar</Text>
 						</TouchableOpacity>
-						<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
+						<View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 15}}>
 							<TouchableOpacity >
-								<Text style={ styles.sideButtonText }>Esqueceu a senha ?</Text>
+								<Text style={styles.sideButtonText}>Esqueceu a senha ?</Text>
 							</TouchableOpacity>
 							<TouchableOpacity >
-								<Text style={ [ styles.sideButtonText, { textAlign: 'left' } ]}>Trocar Conta</Text>
+								<Text style={[styles.sideButtonText, {textAlign: 'left'}]}>Trocar Conta</Text>
 							</TouchableOpacity>
 						</View>
 					</View>
 					<TouchableOpacity onPress={() => navigation.navigate('registro')}>
-						<Text style={ styles.bottomButtonText } >Registre-se</Text>
+						<Text style={styles.bottomButtonText} >Registre-se</Text>
 					</TouchableOpacity>
 				</View>
 			</KeyboardAvoidingView>
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		width: 100,
-		height:100,
+		height: 100,
 		alignSelf: 'center',
 	},
 	input: {
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 	},
 	sideButtonText: {
-		color: global.lightergray ,
+		color: global.lightergray,
 	},
 	bottomButtonText: {
 		textAlign: 'center',

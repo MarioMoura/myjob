@@ -10,16 +10,19 @@ import {
 	View,
 } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 
-import {AntDesign, Entypo} from '@expo/vector-icons';
+import {AntDesign, Entypo, Ionicons} from '@expo/vector-icons';
 
-export default function Header() {
+export default function Header({back, aboutText}) {
 	const navigation = useNavigation();
 	const [modalVisible, setModalVisible] = useState(false);
 	return (
 		<View style={styles.container}>
+			{back &&
+				<Ionicons name="chevron-back" size={34} color={global.green} onPress={() => navigation.goBack()} />
+			}
 			<TouchableOpacity onPress={() => navigation.navigate('perfil')}>
 				<Image
 					source={{
@@ -63,9 +66,7 @@ export default function Header() {
 							/>
 							<View style={styles.modalTextBox} >
 								<Text style={styles.modalText}>
-									texto massa
-									texto massa
-									texto massa
+									{aboutText}
 								</Text>
 							</View>
 						</View>

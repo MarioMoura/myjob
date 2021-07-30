@@ -68,7 +68,9 @@ export default function Lista({navigation}) {
 
 	return (
 		<View style={styles.base}>
-			<Header />
+			<Header
+				aboutText="Lista Page"
+			/>
 			<View style={styles.container}>
 				<Text style={styles.mainText}>Os Jobs</Text>
 				<SeparatorTop />

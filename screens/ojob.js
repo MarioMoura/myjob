@@ -164,7 +164,10 @@ export default function Ojob({route, navigation}) {
 
 	return (
 		<View style={styles.base}>
-			<Header />
+			<Header
+				back={true}
+				aboutText="O Job"
+			/>
 			<View style={styles.container}>
 				<Text style={styles.mainText}>Os Jobs</Text>
 				<SeparatorTop />
@@ -192,12 +195,14 @@ export default function Ojob({route, navigation}) {
 					showsVerticalScrollIndicator={false}
 				/>
 				<View style={styles.buttonBox}>
+					{/* Location Button */}
 					<TouchableOpacity style={styles.locationButton}>
 						<MaterialCommunityIcons name="map-marker-outline" size={24} color="white" />
 						<Text style={{color: 'white'}}>Localização</Text>
 					</TouchableOpacity >
+					{/* Proposta Button */}
 					<TouchableOpacity
-						onPress={() => console.log('proposta')}
+						onPress={() => navigation.goBack()}
 						style={[styles.propostaButton, {
 						}]}>
 						<Animated.View style={{
