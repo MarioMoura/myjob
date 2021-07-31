@@ -1,26 +1,44 @@
-import React, {useContext, useRef} from 'react';
+import '../globals/colors';
+
 import {Image, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
+import React, {useContext, useRef, useState} from 'react';
+import Toast from 'react-native-toast-message'
 
 import AuthContext from '../globals/authContext';
-import '../globals/colors';
 import MainIcon from '../globals/mainIcon';
-
-import Toast from 'react-native-toast-message'
 
 
 export default function Login({navigation}) {
 	const {isLogged, setIsLogged} = useContext(AuthContext);
-
+	const [user, setUser] = useState();
+	const [password, setPassword] = useState();
 	const userInputRef = useRef()
 	const passwdInputRef = useRef()
 
+	const wait = (timeout) => {
+		return new Promise(resolve => setTimeout(resolve, timeout));
+	}
+
 	const Log_in = () => {
-		//setIsLogged(true);
+		setIsLogged(true);
+		return 0;
 		Toast.show({
-			type: 'error',
-			text1: 'Hello',
-			text2: 'This is some something 👋',
+			type: 'progress',
+			text1: 'Loggin in...',
+			text2: 'Trying to log in',
 		});
+		wait(2000).then(
+			() => {
+				if (user === "Mario" && password === "12345") {
+					setIsLogged(true);
+				} else {
+					Toast.show({
+						type: 'error',
+						text1: 'Could not log in',
+						text2: 'Wrong password or user',
+					});
+				}
+			});
 	}
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -39,6 +57,7 @@ export default function Login({navigation}) {
 						returnKeyType="next"
 						onSubmitEditing={() => passwdInputRef.current.focus()}
 						clearButtonMode='while-editing'
+						onChangeText={(text) => setUser(text)}
 					/>
 					<TextInput
 						placeholder="Senha"
@@ -47,6 +66,9 @@ export default function Login({navigation}) {
 						ref={passwdInputRef}
 						returnKeyType="go"
 						onSubmitEditing={() => Log_in()}
+						onChangeText={(text) => setPassword(text)}
+						clearButtonMode='while-editing'
+						secureTextEntry={true}
 					/>
 					<View >
 						<TouchableOpacity

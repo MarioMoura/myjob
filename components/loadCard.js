@@ -1,37 +1,24 @@
-import {
-	StyleSheet,
-	Image,
-	Text,
-	View,
-	TouchableOpacity
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 
-import TypeIcon from '../components/typeIcon';
 
-export default function Card({item}) {
-	const navigation = useNavigation();
+export default function LoadCard({}) {
 	return (
 		<View style={styles.base}>
 			<View style={styles.left}>
-				<Image
-					source={{uri: item.photourl, }}
+				<View
 					style={styles.profileIcon}
 				/>
 			</View>
 			<View style={styles.middle}>
-				<Text style={styles.textUser}>{item.user}</Text>
-				<Text style={styles.textTitle}>{item.title}</Text>
-				<Text style={styles.textDescription} numberOfLines={2}>{item.description}</Text>
+				<View style={styles.textUser}></View>
+				<View style={styles.textTitle}></View>
+				<View style={styles.textDescription}></View>
+				<View style={styles.textDescription}></View>
 			</View>
 			<View style={styles.right}>
-				<TypeIcon type={item.type} size={20} />
-				<Text style={styles.textDistance}>{item.distance}Km</Text>
-				<TouchableOpacity style={styles.acceptButton} onPress={() => navigation.navigate('ojob', {item: item})}>
-					<Text style={styles.textButton}>Aceitar</Text>
-				</TouchableOpacity>
-
+				<View style={styles.acceptButton} >
+				</View>
 			</View>
 		</View>
 	);
@@ -49,29 +36,40 @@ const styles = StyleSheet.create({
 	},
 	middle: {
 		flex: 2,
-		paddingHorizontal: 5,
 		justifyContent: 'space-between',
 	},
 	right: {
 		flex: 1,
 		alignItems: 'flex-end',
+		justifyContent: 'flex-end'
 	},
 	profileIcon: {
+		opacity: 0.5,
 		height: 40,
 		width: 40,
 		borderRadius: 10,
+		backgroundColor: 'gray',
 	},
 	textUser: {
-		color: global.green,
-		fontSize: 15,
+		opacity: 0.5,
+		height: '22%',
+		width: '50%',
+		backgroundColor: 'gray',
+		borderRadius: 5,
 	},
 	textTitle: {
-		color: 'white',
-		fontSize: 12,
+		opacity: 0.5,
+		height: '15%',
+		width: '70%',
+		backgroundColor: 'gray',
+		borderRadius: 5,
 	},
 	textDescription: {
-		color: global.lightgray,
-		fontSize: 9,
+		opacity: 0.5,
+		height: '5%',
+		width: '90%',
+		backgroundColor: 'gray',
+		borderRadius: 5,
 	},
 	typeIcon: {
 		height: 20,
@@ -84,7 +82,9 @@ const styles = StyleSheet.create({
 		fontSize: 11,
 	},
 	acceptButton: {
+		opacity: 0.5,
 		width: '100%',
+		height: '37%',
 		backgroundColor: global.green,
 		alignItems: 'center',
 		padding: 3,

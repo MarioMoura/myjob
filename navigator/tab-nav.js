@@ -1,16 +1,16 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import '../globals/colors';
+
+import {View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import Lista from '../screens/lista';
-import Jobs from '../screens/jobs';
-import Perfil from '../screens/perfil';
-import Ojob from '../screens/ojob';
-
+import React from 'react';
 
 import {FontAwesome5, FontAwesome} from '@expo/vector-icons';
 
-import '../globals/colors';
+import Jobs from '../screens/jobs';
+import Lista from '../screens/lista';
+import Ojob from '../screens/ojob';
+import Perfil from '../screens/perfil';
+import Proposta from '../screens/proposta';
 
 export default function TabNav() {
 
@@ -69,6 +69,14 @@ export default function TabNav() {
 			<Tab.Screen
 				name="ojob"
 				component={Ojob}
+				options={{
+					// no button
+					tabBarButton: () => (null),
+				}}
+			/>
+			<Tab.Screen
+				name="proposta"
+				component={Proposta}
 				options={{
 					// no button
 					tabBarButton: () => (null),

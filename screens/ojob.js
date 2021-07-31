@@ -151,16 +151,9 @@ export default function Ojob({route, navigation}) {
 						color: checkArray[index] ? global.green : 'white'
 					}}
 				/>
-				{/*  <Text style={{
-						fontSize: 10,
-						alignSelf: 'center',
-						marginBottom: 4,
-						color: checkArray[index] ? global.green : 'white'
-					}} > {item}</Text> */}
 			</View>
 		)
 	}
-
 
 	return (
 		<View style={styles.base}>
@@ -202,7 +195,7 @@ export default function Ojob({route, navigation}) {
 					</TouchableOpacity >
 					{/* Proposta Button */}
 					<TouchableOpacity
-						onPress={() => navigation.goBack()}
+						onPress={() => navigation.navigate('proposta')}
 						style={[styles.propostaButton, {
 						}]}>
 						<Animated.View style={{

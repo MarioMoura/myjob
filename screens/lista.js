@@ -1,22 +1,41 @@
 import {
+	FlatList,
+	RefreshControl,
 	StyleSheet,
 	Text,
-	View,
 	TouchableOpacity,
-	FlatList
+	View
 } from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 
 import Card from '../components/card';
 import DATA from "../globals/data";
 import Header from "../components/header";
+import LoadCard from '../components/loadCard';
 
 export default function Lista({navigation}) {
 
-	const Stack = createStackNavigator();
 
-	//const { isLogged, setIsLogged } = useContext(AuthContext);
+	const [fetched, setFetched] = useState(false);
+	const fetchArray = [1, 2, 3, 4];
+	var key = 0;
+	const getKey = () => {
+		return (key++);
+	}
+
+	const [refreshing, setRefreshing] = useState(false);
+
+	const wait = (timeout) => {
+		return new Promise(resolve => setTimeout(resolve, timeout));
+	}
+
+	const Refresh = React.useCallback(() => {
+		setRefreshing(true);
+		wait(2000).then(() => {
+			setRefreshing(false);
+			setFetched(true);
+		});
+	}, []);
 
 	const Separator = () => {
 		return (
@@ -47,22 +66,59 @@ export default function Lista({navigation}) {
 
 	const flatItem = ({item}) => {
 		return (
-			<TouchableOpacity onPress={() => navigation.navigate('ojob', {item: item})}>
+			<TouchableOpacity onPress={() => console.log('éae')}>
 				<Card item={item} />
 			</TouchableOpacity>
 		)
 	}
+	const fetchFlatItem = () => {
+		return (
+			<View >
+				<LoadCard />
+			</View>
+		)
+	}
 
 	function ShowList() {
-		return (
-			<FlatList
-				data={DATA}
-				renderItem={flatItem}
-				ItemSeparatorComponent={Separator}
-				style={{width: '90%'}}
-				showsVerticalScrollIndicator={false}
-			/>
-		);
+		if (fetched === true) {
+			return (
+				<FlatList
+					data={DATA}
+					renderItem={flatItem}
+					ItemSeparatorComponent={Separator}
+					style={{width: '90%'}}
+					showsVerticalScrollIndicator={false}
+					refreshControl={
+						<RefreshControl
+							tintColor={global.green}
+							colors={global.green}
+							refreshing={refreshing}
+							onRefresh={() => Refresh()}
+						/>
+					}
+				/>
+			);
+		} else {
+			return (
+				<FlatList
+					data={fetchArray}
+					renderItem={fetchFlatItem}
+					ItemSeparatorComponent={Separator}
+					style={{width: '90%'}}
+					showsVerticalScrollIndicator={false}
+					keyExtractor={getKey}
+					refreshControl={
+
+						<RefreshControl
+							tintColor={global.green}
+							colors={global.green}
+							refreshing={refreshing}
+							onRefresh={() => Refresh()}
+						/>
+					}
+				/>
+			);
+		}
 	}
 
 
@@ -75,7 +131,6 @@ export default function Lista({navigation}) {
 				<Text style={styles.mainText}>Os Jobs</Text>
 				<SeparatorTop />
 				<ShowList />
-				<SeparatorTop />
 			</View>
 		</View>
 	);
