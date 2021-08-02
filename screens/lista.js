@@ -16,11 +16,10 @@ import LoadCard from '../components/loadCard';
 export default function Lista({navigation}) {
 
 
-	const [fetched, setFetched] = useState(false);
 	const fetchArray = [1, 2, 3, 4];
 	var key = 0;
 	const getKey = () => {
-		return (key++);
+		return (key++).toString();
 	}
 
 	const [refreshing, setRefreshing] = useState(false);
@@ -29,13 +28,13 @@ export default function Lista({navigation}) {
 		return new Promise(resolve => setTimeout(resolve, timeout));
 	}
 
-	const Refresh = React.useCallback(() => {
+	const Refresh = () => {
 		setRefreshing(true);
 		wait(2000).then(() => {
 			setRefreshing(false);
-			setFetched(true);
+			global.fetched = true;
 		});
-	}, []);
+	}
 
 	const Separator = () => {
 		return (
@@ -80,7 +79,7 @@ export default function Lista({navigation}) {
 	}
 
 	function ShowList() {
-		if (fetched === true) {
+		if (global.fetched === true) {
 			return (
 				<FlatList
 					data={DATA}
@@ -88,6 +87,7 @@ export default function Lista({navigation}) {
 					ItemSeparatorComponent={Separator}
 					style={{width: '90%'}}
 					showsVerticalScrollIndicator={false}
+					keyExtractor={(item) => item.id.toString()}
 					refreshControl={
 						<RefreshControl
 							tintColor={global.green}
@@ -108,7 +108,6 @@ export default function Lista({navigation}) {
 					showsVerticalScrollIndicator={false}
 					keyExtractor={getKey}
 					refreshControl={
-
 						<RefreshControl
 							tintColor={global.green}
 							colors={global.green}
