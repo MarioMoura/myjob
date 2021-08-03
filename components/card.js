@@ -10,6 +10,8 @@ import React from 'react';
 
 import TypeIcon from '../components/typeIcon';
 
+import '../globals/colors';
+
 export default function Card({item}) {
 	const navigation = useNavigation();
 	return (

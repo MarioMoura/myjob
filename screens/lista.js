@@ -16,7 +16,12 @@ import LoadCard from '../components/loadCard';
 export default function Lista({navigation}) {
 
 
-	const fetchArray = [1, 2, 3, 4];
+	const fetchArray = [
+		{id: 1},
+		{id: 2},
+		{id: 3},
+		{id: 4},
+	];
 	var key = 0;
 	const getKey = () => {
 		return (key++).toString();
@@ -31,8 +36,8 @@ export default function Lista({navigation}) {
 	const Refresh = () => {
 		setRefreshing(true);
 		wait(2000).then(() => {
-			setRefreshing(false);
 			global.fetched = true;
+			setRefreshing(false);
 		});
 	}
 
@@ -78,12 +83,18 @@ export default function Lista({navigation}) {
 		)
 	}
 
-	function ShowList() {
-		if (global.fetched === true) {
-			return (
+
+	return (
+		<View style={styles.base}>
+			<Header
+				aboutText="Lista Page"
+			/>
+			<View style={styles.container}>
+				<Text style={styles.mainText}>Os Jobs</Text>
+				<SeparatorTop />
 				<FlatList
-					data={DATA}
-					renderItem={flatItem}
+					data={global.fetched ? DATA : fetchArray}
+					renderItem={global.fetched ? flatItem : fetchFlatItem}
 					ItemSeparatorComponent={Separator}
 					style={{width: '90%'}}
 					showsVerticalScrollIndicator={false}
@@ -97,39 +108,6 @@ export default function Lista({navigation}) {
 						/>
 					}
 				/>
-			);
-		} else {
-			return (
-				<FlatList
-					data={fetchArray}
-					renderItem={fetchFlatItem}
-					ItemSeparatorComponent={Separator}
-					style={{width: '90%'}}
-					showsVerticalScrollIndicator={false}
-					keyExtractor={getKey}
-					refreshControl={
-						<RefreshControl
-							tintColor={global.green}
-							colors={global.green}
-							refreshing={refreshing}
-							onRefresh={() => Refresh()}
-						/>
-					}
-				/>
-			);
-		}
-	}
-
-
-	return (
-		<View style={styles.base}>
-			<Header
-				aboutText="Lista Page"
-			/>
-			<View style={styles.container}>
-				<Text style={styles.mainText}>Os Jobs</Text>
-				<SeparatorTop />
-				<ShowList />
 			</View>
 		</View>
 	);

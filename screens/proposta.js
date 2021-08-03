@@ -1,7 +1,16 @@
 import '../globals/colors';
 
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React from 'react';
+import {
+	Dimensions,
+	Keyboard,
+	StyleSheet,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
+	View
+} from 'react-native';
+import React, {useState} from 'react';
 
 import {
 	FontAwesome,
@@ -11,7 +20,10 @@ import {
 
 import Header from '../components/header';
 
+const {height} = Dimensions.get('window');
+
 export default function Proposta({navigation}) {
+	const [jobPrice, setJobPrice] = useState();
 
 	const SeparatorTop = () => {
 		return (
@@ -29,42 +41,61 @@ export default function Proposta({navigation}) {
 
 
 	return (
-		<View style={styles.base}>
-			<Header
-				back={true}
-				aboutText="O Job"
-			/>
-			<View style={styles.container}>
-				<Text style={styles.mainText}>A Proposta</Text>
-				<SeparatorTop />
-				<View style={styles.mainBox}>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<View style={styles.base}>
+				<Header
+					back={true}
+					aboutText="A Proposta"
+				/>
+				<View style={styles.container}>
+					<Text style={styles.mainText}>A Proposta</Text>
+					<SeparatorTop />
+					<View style={styles.mainBox}>
 
-					<View style={styles.topBox}>
-						<Text style={styles.boxMainText}>Digite Seu Valor</Text>
-						<TextInput
-							style={styles.input}
-							placeholder="R$ 00,00"
-							placeholderTextColor={global.green}
-						/>
-					</View>
+						<View style={styles.topBox}>
+							<Text style={styles.boxMainText}>Digite Seu Valor</Text>
+							<TextInput
+								style={styles.input}
+								placeholder="R$ 00,00"
+								placeholderTextColor={global.green}
+								keyboardType='numeric'
+								value={jobPrice}
+								onChangeText={(text) => setJobPrice(text)}
+							/>
+						</View>
 
-					<View style={styles.bottomBox}>
-						<Text style={styles.boxBottomText}>Anexos:</Text>
-						<View style={styles.iconsSharedView}>
-							<View style={styles.iconsView} >
-								<FontAwesome name="camera" size={27} color="white" />
-							</View>
-							<View style={styles.iconsView} >
-								<Ionicons name="document" size={27} color="white" />
-							</View>
-							<View style={styles.iconsView} >
-								<MaterialIcons name="chat-bubble" size={27} color="white" />
+						<View style={styles.bottomBox}>
+							<Text style={styles.boxBottomText}>Anexos:</Text>
+							<View style={styles.iconsSharedView}>
+								<View style={styles.iconsView} >
+									<FontAwesome name="camera" size={27}
+										color="white"
+										onPress={() => console.log('camera')}
+									/>
+								</View>
+								<View style={styles.iconsView} >
+									<Ionicons name="document" size={27}
+										onPress={() => console.log('docs')}
+										color="white"
+									/>
+								</View>
+								<View style={styles.iconsView} >
+									<MaterialIcons name="chat-bubble" size={27}
+										color="white"
+										onPress={() => console.log('chat')}
+									/>
+								</View>
 							</View>
 						</View>
+
+
 					</View>
+					<TouchableOpacity style={styles.acceptButton} onPress={() => console.log('enviar')}>
+						<Text style={styles.textButton}>Enviar</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	);
 }
 
@@ -107,7 +138,7 @@ const styles = StyleSheet.create({
 	},
 	boxMainText: {
 		color: 'white',
-		fontSize: 25,
+		fontSize: 22,
 	},
 	input: {
 		color: 'white',
@@ -138,5 +169,17 @@ const styles = StyleSheet.create({
 		backgroundColor: global.gray,
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	acceptButton: {
+		width: '35%',
+		marginTop: height * 0.05, // five percent
+		backgroundColor: global.green,
+		alignItems: 'center',
+		padding: 7,
+		borderRadius: 10,
+	},
+	textButton: {
+		color: 'white',
+		fontSize: 22,
 	},
 });

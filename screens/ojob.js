@@ -108,7 +108,7 @@ export default function Ojob({route, navigation}) {
 
 	var key = 0;
 	const getKey = () => {
-		return (key++);
+		return (key++).toString();
 	}
 
 	const SeparatorTop = () => {
