@@ -12,7 +12,7 @@ import TypeIcon from '../components/typeIcon';
 
 import '../globals/colors';
 
-export default function Card({item}) {
+export default function Card({item, disableAccept}) {
 	const navigation = useNavigation();
 	return (
 		<View style={styles.base}>
@@ -30,9 +30,11 @@ export default function Card({item}) {
 			<View style={styles.right}>
 				<TypeIcon type={item.type} size={20} />
 				<Text style={styles.textDistance}>{item.distance}Km</Text>
-				<TouchableOpacity style={styles.acceptButton} onPress={() => navigation.navigate('ojob', {item: item})}>
-					<Text style={styles.textButton}>Aceitar</Text>
-				</TouchableOpacity>
+				{!disableAccept &&
+					<TouchableOpacity style={styles.acceptButton} onPress={() => navigation.navigate('ojob', {item: item})}>
+						<Text style={styles.textButton}>Aceitar</Text>
+					</TouchableOpacity>
+				}
 
 			</View>
 		</View>
