@@ -28,9 +28,7 @@ export default function SubList({title, color, array}) {
 
 	const flatItem = ({item}) => {
 		return (
-			<TouchableOpacity onPress={() => console.log('éae')}>
-				<Card item={item} disableAccept={true} />
-			</TouchableOpacity>
+			<Card item={item} disableAccept={true} />
 		)
 	}
 
@@ -38,6 +36,7 @@ export default function SubList({title, color, array}) {
 		base: {
 			width: '90%',
 			marginBottom: 15,
+			alignSelf: 'center'
 		},
 		separator: {
 			backgroundColor: color,
@@ -58,8 +57,7 @@ export default function SubList({title, color, array}) {
 	});
 
 	const gHeight = new Animated.Value(100);
-
-
+	const gOpacity = new Animated.Value(1);
 
 	//useEffect(() => {
 	//if (closed)
@@ -69,25 +67,45 @@ export default function SubList({title, color, array}) {
 	//}, [closed]);
 
 	const closeList = () => {
-		Animated.timing(
-			gHeight,
-			{
-				toValue: 0,
-				duration: 1000,
-				useNativeDriver: false
-			}
-		).start();
+		Animated.sequence([
+			Animated.timing(
+				gOpacity,
+				{
+					toValue: 0,
+					duration: 500,
+					useNativeDriver: false
+				}
+			),
+			Animated.timing(
+				gHeight,
+				{
+					toValue: 0,
+					duration: 1000,
+					useNativeDriver: false
+				}
+			),
+		]).start();
 	}
 
 	const openList = () => {
-		Animated.timing(
-			gHeight,
-			{
-				toValue: 100,
-				duration: 1000,
-				useNativeDriver: false
-			}
-		).start();
+		Animated.sequence([
+			Animated.timing(
+				gHeight,
+				{
+					toValue: 100,
+					duration: 1000,
+					useNativeDriver: false
+				}
+			),
+			Animated.timing(
+				gOpacity,
+				{
+					toValue: 1,
+					duration: 500,
+					useNativeDriver: false
+				}
+			),
+		]).start();
 	}
 
 	const toggle = () => {
@@ -108,7 +126,10 @@ export default function SubList({title, color, array}) {
 				<Separator />
 			</TouchableOpacity>
 			<Animated.View
-				style={{maxHeight: gHeight.interpolate({inputRange: [0, 50, 100], outputRange: ['0%', '50%', '100%']})}}
+				style={{
+					maxHeight: gHeight.interpolate({inputRange: [0, 50, 100], outputRange: ['0%', '50%', '100%']}),
+					opacity: gOpacity,
+				}}
 			>
 				<FlatList
 					data={array}

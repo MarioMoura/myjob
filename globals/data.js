@@ -1,13 +1,13 @@
 const DATA = [
 	{
 		id: 1,
-		user: "Kratos",
+		user: "Perna Longa",
 		title: "Grama Alta",
 		type: 'green',
 		distance: 17,
-		location: "Tyr's Temple - Midgard",
+		location: "Jardins - Sao Paulo",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photourl: "https://cdn.dribbble.com/users/458522/screenshots/4568564/kratos_1.jpg?compress=1&resize=300x300",
+		photourl: "https://static.wikia.nocookie.net/looneytunes/images/b/ba/BD1DC604-0990-445E-A75E-3E2CB91741EF.png/revision/latest/top-crop/width/360/height/360?cb=20201206015718",
 		requirements: [
 			"Disponibilidade de Tarde",
 			"Ter conhecimento no manuseio de ferramentas de casa",
@@ -31,13 +31,13 @@ const DATA = [
 	},
 	{
 		id: 3,
-		user: "Bruno Pinho",
+		user: "Ligeirinho",
 		title: "Problemas no Telhado",
 		type: 'red',
 		distance: 6,
 		location: "Jurunas - Belem",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photourl: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+		photourl: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Speedy_Gonzales.svg/1200px-Speedy_Gonzales.svg.png",
 		requirements: [
 			"Req 1",
 			"Req 2",
@@ -46,13 +46,13 @@ const DATA = [
 	},
 	{
 		id: 4,
-		user: "Wesley ",
+		user: "Papa-Léguas",
 		title: "Fazer App",
 		type: 'yellow',
 		distance: 100,
 		location: "Curitiba",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photourl: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+		photourl: "https://i.pinimg.com/originals/78/89/ed/7889edbd6fdcf4e63f13efc538c78dbc.jpg",
 		requirements: [
 			"Req 1",
 			"Req 2",
@@ -62,13 +62,13 @@ const DATA = [
 	},
 	{
 		id: 5,
-		user: "Wesley ",
+		user: "Frajola",
 		title: "Fazer App",
 		type: 'yellow',
 		distance: 100,
 		location: "Curitiba",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photourl: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+		photourl: "https://i.pinimg.com/474x/a1/47/c0/a147c01b872bb34cc506fb3f50ae5165.jpg",
 		requirements: [
 			"Req 1",
 			"Req 2",
@@ -78,13 +78,13 @@ const DATA = [
 	},
 	{
 		id: 6,
-		user: "Wesley ",
+		user: "Marvin, o Marciano",
 		title: "Fazer App",
 		type: 'yellow',
 		distance: 100,
 		location: "Curitiba",
 		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photourl: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+		photourl: "https://static.wikia.nocookie.net/dublagempedia/images/a/aa/Marvin_the_Martian.svg.png/revision/latest?cb=20171129225846&path-prefix=pt-br",
 		requirements: [
 			"Req 1",
 			"Req 2",

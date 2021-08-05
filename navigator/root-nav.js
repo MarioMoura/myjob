@@ -11,12 +11,19 @@ import TabNav from './tab-nav';
 import TypesNav from './types-nav';
 import ToastConfig from '../components/toastConfig';
 
+import * as ScreenOrientation from 'expo-screen-orientation';
+
 export default function RootNav() {
 
 
 	const [isLogged, setIsLogged] = useState(false);
 
 	const Wrap = createBottomTabNavigator();
+
+	async function changeScreenOrientation() {
+		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT);
+	}
+	ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT);
 
 	return (
 		<NavigationContainer >

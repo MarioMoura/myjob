@@ -2,7 +2,7 @@ import '../globals/colors'
 
 import {
 	Animated,
-	ScrollView,
+	FlatList,
 	StyleSheet,
 	Text,
 	View
@@ -34,17 +34,33 @@ export default function Jobs({}) {
 			</View>
 		);
 	}
+	const renderItem = ({item}) => (
+		<SubList
+			title={item.title}
+			color={item.color}
+			array={item.array}
+		/>
+	);
 
 	return (
 		<Animated.View style={styles.base}>
 			<Header
 				aboutText="Lista Page"
 			/>
-			<ScrollView >
-				<View style={styles.container}>
-					<Text style={styles.mainText}>Meus Jobs</Text>
-					<SeparatorTop />
-					<SubList
+			<View style={styles.container}>
+				<Text style={styles.mainText}>Meus Jobs</Text>
+				<SeparatorTop />
+				<FlatList
+					style={{width: '100%', }}
+					data={[
+						{key: "1", title: "Confirmados", color: "green", array: DATA.filter(item => jobs.confirmados.includes(item.id))},
+						{key: "2", title: "Nao Confirmados", color: global.green, array: DATA.filter(item => jobs.naoconfirmados.includes(item.id))},
+						{key: "3", title: "Negados", color: "orange", array: DATA.filter(item => jobs.negados.includes(item.id))},
+					]}
+					renderItem={renderItem}
+				//contentContainerStyle={{alignItems: 'center', width: '100%'}}
+				/>
+				{/* <SubList
 						title="Confirmados"
 						color="green"
 						array={DATA.filter(item => jobs.confirmados.includes(item.id))}
@@ -58,9 +74,8 @@ export default function Jobs({}) {
 						title="Negados"
 						color="orange"
 						array={DATA.filter(item => jobs.negados.includes(item.id))}
-					/>
-				</View>
-			</ScrollView>
+					/> */}
+			</View>
 		</Animated.View>
 	);
 }
