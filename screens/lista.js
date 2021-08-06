@@ -1,9 +1,11 @@
 import {
 	FlatList,
+	Keyboard,
 	RefreshControl,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import React, {useState} from 'react';
@@ -12,9 +14,13 @@ import Card from '../components/card';
 import DATA from "../globals/data";
 import Header from "../components/header";
 import LoadCard from '../components/loadCard';
+import SearchBox from '../components/searchBox';
 
 export default function Lista({navigation}) {
 
+	const [mainArray, setMainArray] = useState(DATA);
+
+	const original = DATA;
 
 	const fetchArray = [
 		{id: 1},
@@ -56,15 +62,17 @@ export default function Lista({navigation}) {
 
 	const SeparatorTop = () => {
 		return (
-			<View
-				style={{
-					backgroundColor: global.lightgray,
-					height: 2,
-					width: '90%',
-					marginVertical: 10,
-					borderRadius: 20,
-				}}>
-			</View>
+			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+				<View
+					style={{
+						backgroundColor: global.lightgray,
+						height: 2,
+						width: '90%',
+						marginVertical: 10,
+						borderRadius: 20,
+					}}>
+				</View>
+			</TouchableWithoutFeedback>
 		);
 	}
 
@@ -75,6 +83,7 @@ export default function Lista({navigation}) {
 			</TouchableOpacity>
 		)
 	}
+
 	const fetchFlatItem = () => {
 		return (
 			<View >
@@ -83,17 +92,25 @@ export default function Lista({navigation}) {
 		)
 	}
 
-
 	return (
 		<View style={styles.base}>
 			<Header
 				aboutText="Lista Page"
 			/>
 			<View style={styles.container}>
-				<Text style={styles.mainText}>Os Jobs</Text>
+				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+					<Text style={styles.mainText}>Os Jobs</Text>
+				</TouchableWithoutFeedback>
+				<SeparatorTop />
+				<SearchBox
+					orig={original}
+					setArray={setMainArray}
+				/>
 				<SeparatorTop />
 				<FlatList
-					data={global.fetched ? DATA : fetchArray}
+					onStartShouldSetResponder={() => false}
+					scrollEnabled={true}
+					data={global.fetched ? mainArray : fetchArray}
 					renderItem={global.fetched ? flatItem : fetchFlatItem}
 					ItemSeparatorComponent={Separator}
 					style={{width: '90%'}}

@@ -1,3 +1,5 @@
+import Test from './screens/test';
+
 import React from 'react';
 
 import RootNav from './navigator/root-nav';
